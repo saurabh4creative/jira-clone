@@ -1,0 +1,15 @@
+export const apiPaths = {
+     LOGIN: "/login",
+     REGISTER: "/register",
+     GET_USERS : "/users",
+     GET_USERS_LIST : '/user-list',
+     CREATE_WORKSPACE: "/workspace",
+     GET_WORKSPACE : '/workspaces',
+     GET_WORKSPACE_DETAIL : '/workspace',
+     UPDATE_WORKSPACE : '/workspace',
+     CREATE_PROJECT: "/project",
+     GET_PROJECTS : '/projects',
+     GET_PROJECT_DETAIL : "/project",
+     CREATE_TASK: "/task",
+     GET_TASKS : '/tasks',
+};
