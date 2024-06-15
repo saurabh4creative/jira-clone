@@ -59,6 +59,7 @@ const AddWorkspaceForm = ({ onFinish, loading, onClose }) => {
                                         loading={isLoading}
                                         error={error}
                                         isError={isError}
+                                        mode="multiple"
                                    />
                               </Form.Item>
                          </>

@@ -8,3 +8,7 @@ export const createTask = (payload) => {
 export const getTasksList = () => {
      return getData(apiPaths.GET_TASKS);
 };
+
+export const getProjectTasks = (projectID) => {
+     return getData(`${apiPaths.GET_TASKS}?projectID=${projectID}`);
+}

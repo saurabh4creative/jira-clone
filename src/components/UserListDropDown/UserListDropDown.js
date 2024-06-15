@@ -29,9 +29,7 @@ const UserListDropDown = ({ users, loading, error, isError, onChange, defaultVal
                          : []
                }
                placeholder={"Select User"}
-               mode="multiple"
-               onChange={handleChange} 
-               allowClear
+               onChange={handleChange}  
                {...rest}
           />
      ) : null;

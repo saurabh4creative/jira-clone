@@ -8,7 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "app/reducers/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const Login = () => { 
+const Login = () => {  
      const getConfigValue = useSitePath();
      const { showSuccessMessage, showErrorMessage } = useNotification();
      const dispatch = useDispatch();

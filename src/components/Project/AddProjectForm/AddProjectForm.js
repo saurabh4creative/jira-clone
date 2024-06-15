@@ -62,6 +62,7 @@ const AddProjectForm = ({ onClose, onFinish, loading }) => {
                                         loading={isLoading}
                                         error={error}
                                         isError={isError}
+                                        mode="multiple"
                                    />
                               </Form.Item>
                          </>

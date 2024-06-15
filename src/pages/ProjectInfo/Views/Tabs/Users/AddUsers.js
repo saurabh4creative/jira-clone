@@ -1,32 +1,33 @@
-import { Button, Drawer, Form } from "antd";
 import UserListDropDown from "@components/UserListDropDown/UserListDropDown";
-import useNotification from "@hooks/useNotification";
+import useNotification from "@hooks/useNotification"; 
+import { updateProjectUserList } from "@services/api/requests/projectApi";
+import { getWorkspaceDetailTab } from "@services/api/requests/workspaceApi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { usersList } from "@services/api/requests/authApi";
-import { updateWorkspaceDetail } from "@services/api/requests/workspaceApi";
+import { Button, Drawer, Form } from "antd";
+import React from "react";
 import { useParams } from "react-router-dom";
 
-const UserModify = ({ isOpen, onClose, users }) => {
-     const { workspaceID } = useParams();
-     const [form] = Form.useForm();
-     const queryClient = useQueryClient();
+const AddUsers = ({ isOpen, onClose, users }) => {
+     const [ form ] = Form.useForm();
+     const { projectID, workspaceID } = useParams();
      const { showSuccessMessage, showErrorMessage } = useNotification();
+     const queryClient = useQueryClient();
+
+     const excludeUserList = (object, excludes) => {
+        const notID = excludes.map((item) => item._id);
+        const list = object.filter((item) => !notID.includes(item._id));
+        return list;
+     };
 
      const { isLoading, error, data, isError } = useQuery({
-          queryKey: ["users"],
-          queryFn: () => usersList(),
+          queryKey: ["workspaceDetail", workspaceID, "users"],
+          queryFn: ({ queryKey }) => getWorkspaceDetailTab(queryKey[1], queryKey[2]),
           retry: false,
           enabled : isOpen
      });
 
-     const excludeUserList = (object, excludes) => {
-          const notID = excludes.map((item) => item._id);
-          const list = object.filter((item) => !notID.includes(item._id));
-          return list;
-     };
-
      const submitForm = async (id, values) => {
-          return await updateWorkspaceDetail(id, values);
+          return await updateProjectUserList(id, 'users', values);
      };
 
      const mutation = useMutation({
@@ -38,10 +39,10 @@ const UserModify = ({ isOpen, onClose, users }) => {
           },
           onSuccess: (data) => { 
                if (data.status === true) {
-                    onClose();
-                    queryClient.refetchQueries({ queryKey: ["workspaceDetail", workspaceID], exact: true });
-                    queryClient.refetchQueries({ queryKey: ["workspaceDetail", workspaceID, 'users'], exact: true });
+                    onClose(); 
                     showSuccessMessage(data.message);
+                    queryClient.refetchQueries({ queryKey: ["projectInfo"  , workspaceID, projectID], exact: true });
+                    queryClient.refetchQueries({ queryKey: ["projectDetail", projectID, "users"], exact: true });
                     form.resetFields();
                } else {
                     showErrorMessage(data.message);
@@ -49,11 +50,11 @@ const UserModify = ({ isOpen, onClose, users }) => {
           },
      });
 
-     const onFinish = (values) => mutation.mutate({ id: workspaceID, payload: values });
-
+     const onFinish = (values) => mutation.mutate({ id: projectID, payload: values });
+     
      return (
           <Drawer title="Add User" onClose={onClose} open={isOpen}>
-               <Form layout="vertical" form={form} name="add-workspace-user" onFinish={onFinish}>
+               <Form layout="vertical" form={form} name="add-project-user" onFinish={onFinish}>
                     <Form.Item
                          name="users"
                          label="Users"
@@ -64,7 +65,7 @@ const UserModify = ({ isOpen, onClose, users }) => {
                               loading={isLoading}
                               error={error}
                               isError={isError}
-                              mode={'multiple'}
+                              mode={"multiple"}
                          />
                     </Form.Item>
                     <Button htmlType="submit" type="primary" block loading={mutation.isPending}>
@@ -75,4 +76,4 @@ const UserModify = ({ isOpen, onClose, users }) => {
      );
 };
 
-export default UserModify;
+export default AddUsers;

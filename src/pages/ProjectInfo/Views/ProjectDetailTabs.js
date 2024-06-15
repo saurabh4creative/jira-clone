@@ -1,6 +1,7 @@
 import { RxDashboard } from "react-icons/rx";
 import { TbListDetails } from "react-icons/tb";
-import { GoProjectRoadmap, GoProjectSymlink, GoChecklist } from "react-icons/go";
+import { FiUser } from "react-icons/fi";
+import { GoProjectRoadmap, GoProjectSymlink, GoChecklist, Usr } from "react-icons/go";
 import { useNavigate, useParams } from "react-router-dom";
 import { sitePaths } from "@config/sitePathConfig"; 
 import { Tabs } from "antd";
@@ -11,6 +12,7 @@ import ListTab from "./Tabs/List/ListTab";
 import Board from "./Tabs/Board/Board";
 import TimeSheet from "./Tabs/TimeSheet/TimeSheet";
 import SettingTab from "./Tabs/Settings/SettingTab";
+import Users from "./Tabs/Users/Users";
 
 const ProjectDetailTabs = () => {
      const navigate = useNavigate();
@@ -46,6 +48,12 @@ const ProjectDetailTabs = () => {
                label: "Timesheet",
                children: <TimeSheet />,
                icon: <RxDashboard size={17} />,
+          },
+          {
+               key: "users",
+               label: "Users",
+               children: <Users />,
+               icon: <FiUser size={17} />,
           },
           {
                key: "setting",

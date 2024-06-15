@@ -1,6 +1,6 @@
 import MainRoutes from "@routes/MainRoutes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import "./App.css";  
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
      return (
           <QueryClientProvider client={queryClient}>
                <MainRoutes /> 
-               <ReactQueryDevtools initialIsOpen={false} /> 
+               {/* <ReactQueryDevtools initialIsOpen={false} />  */}
           </QueryClientProvider>
      );
 }

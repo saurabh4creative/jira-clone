@@ -36,6 +36,7 @@ const publicRoutes = [
      { path: sitePathConfig.LOGIN, component: <Login /> },
      { path: sitePathConfig.REGISTER, component: <Register /> },
      { path: sitePathConfig.RESET_PASSWORD, component: <ResetPassword /> },
+     { path: '/demo', component: 'asd' },
 ];
 
 /**
