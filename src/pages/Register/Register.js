@@ -67,6 +67,7 @@ const Register = () => {
 
      useEffect(() => {
           form.resetFields()
+          // eslint-disable-next-line 
      }, [initVal]) 
 
      return (

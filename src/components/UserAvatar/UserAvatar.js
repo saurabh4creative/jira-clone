@@ -1,13 +1,10 @@
 import { Tooltip } from "antd";
 import Avvvatars from "avvvatars-react";
-import "./UserAvatar.scss";
-import useUserInfo from "@hooks/useUserInfo";
+import "./UserAvatar.scss"; 
 
 const UserAvatar = ({ info, showname, size, hideTooltip }) => {
-     const { info : userInfo } = useUserInfo();
-
      if (info) {
-          const { email, firstName, lastName, _id } = info;
+          const { email, firstName, lastName } = info;
           const displayValue = `${firstName.charAt(0)}${lastName.charAt(0)}`;
 
           return hideTooltip === true ? (

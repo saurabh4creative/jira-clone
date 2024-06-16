@@ -1,7 +1,7 @@
 import AddProjectForm from "@components/Project/AddProjectForm/AddProjectForm";
 import { createProject } from "@services/api/requests/projectApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Drawer, Flex } from "antd";
+import { Drawer } from "antd";
 import useNotification from "antd/es/notification/useNotification";
 import { useParams } from "react-router-dom";
 

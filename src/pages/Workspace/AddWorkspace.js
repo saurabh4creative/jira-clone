@@ -2,7 +2,7 @@ import AddWorkspaceForm from "@components/Workspace/AddWorkspaceForm/AddWorkspac
 import useNotification from "@hooks/useNotification";
 import { createWorkspace } from "@services/api/requests/workspaceApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Drawer, Flex } from "antd";
+import { Drawer } from "antd";
 import React from "react";
 
 const AddWorkspace = ({ isOpen, onClose }) => {

@@ -1,7 +1,7 @@
 import { RxDashboard } from "react-icons/rx";
 import { TbListDetails } from "react-icons/tb";
 import { FiUser } from "react-icons/fi";
-import { GoProjectRoadmap, GoProjectSymlink, GoChecklist, Usr } from "react-icons/go";
+import { GoProjectRoadmap, GoProjectSymlink, GoChecklist } from "react-icons/go";
 import { useNavigate, useParams } from "react-router-dom";
 import { sitePaths } from "@config/sitePathConfig"; 
 import { Tabs } from "antd";
